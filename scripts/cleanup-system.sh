@@ -29,7 +29,7 @@ run() {
     if $DRY_RUN; then
         log "[DRY-RUN] $*"
     else
-        eval "$@" >>"$LOGFILE" 2>&1 || log "[AVISO] Falha ao executar: $*"
+        "$@" >>"$LOGFILE" 2>&1 || log "[AVISO] Falha ao executar: $*"
     fi
 }
 
@@ -53,26 +53,30 @@ main() {
     log "==================================================="
 
     log "-> Limpando cache do pacman (mantendo última versão instalada)..."
-    run "pacman -Sc --noconfirm"
+    run pacman -Sc --noconfirm
     if command -v paccache >/dev/null 2>&1; then
-        run "paccache -rk1"
+        run paccache -rk1
     fi
 
     if command -v docker >/dev/null 2>&1; then
         log "-> Limpando containers, imagens e volumes órfãos do Docker..."
-        run "docker system prune -af --volumes"
+        run docker system prune -af --volumes
     fi
 
     if command -v flatpak >/dev/null 2>&1; then
         log "-> Removendo runtimes Flatpak não utilizados..."
-        run "flatpak uninstall --unused -y"
+        run flatpak uninstall --unused -y
     fi
 
     log "-> Reduzindo logs do journald para 200MB..."
-    run "journalctl --vacuum-size=200M"
+    run journalctl --vacuum-size=200M
 
     log "-> Limpando arquivos temporários órfãos..."
-    run "rm -rf /var/tmp/*"
+    if $DRY_RUN; then
+        log "[DRY-RUN] rm -rf /var/tmp/*"
+    else
+        find /var/tmp/ -mindepth 1 -delete 2>>"$LOGFILE" || log "[AVISO] Falha ao limpar /var/tmp"
+    fi
 
     log "==================================================="
     log "Uso do disco (/) depois: $(disk_usage_root)"
