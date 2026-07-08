@@ -1,6 +1,6 @@
 # arch-system-autopilot
 
-[![ShellCheck](https://github.com/m4halic3/arch-system-autopilot/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/m4halic3/arch-system-autopilot/actions/workflows/shellcheck.yml)
+[![ShellCheck](https://github.com/m4halic3/arch-infrastructure-lab/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/m4halic3/arch-infrastructure-lab/actions/workflows/shellcheck.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Shell](https://img.shields.io/badge/shell-bash-4EAA25?logo=gnubash&logoColor=white)
 ![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=white)
