@@ -1,0 +1,10 @@
+[Unit]
+Description=Rotina de limpeza e manutenção do sistema (pacman, docker, flatpak, journald)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/cleanup-system.sh
+Nice=19
+IOSchedulingClass=idle

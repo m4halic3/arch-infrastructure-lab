@@ -1,0 +1,11 @@
+# Logs gerados pelo próprio script
+*.log
+system-cleanup.log
+
+# Arquivos de sistema/editor
+.DS_Store
+*.swp
+*~
+
+# Ambientes locais
+.env

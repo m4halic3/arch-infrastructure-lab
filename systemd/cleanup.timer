@@ -1,0 +1,10 @@
+[Unit]
+Description=Executa cleanup.service semanalmente
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+RandomizedDelaySec=1800
+
+[Install]
+WantedBy=timers.target
